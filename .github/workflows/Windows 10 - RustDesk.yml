@@ -25,6 +25,9 @@ jobs:
 
       - name: Time Counter (Continuous)
         # Replace with your actual time counter script
-        run: python time.py
+        # This loop will continue indefinitely
+        run: |
+          while true; do
+            python time.py
+          done
         continue-on-error: true
-        timeout /t 1500000
