@@ -7,8 +7,7 @@ jobs:
   build:
     name: Start Building...
     runs-on: windows-latest
-   
-    
+
     steps:
       - name: Downloading & Installing Essentials
         run: |
@@ -18,5 +17,8 @@ jobs:
       - name: Log In To AnyDesk
         run: cmd /c show.bat
 
-      - name: Time Counter
-        run: python time.py
+      - name: Time Counter (Непрерывный)
+        # Используем `run: bash -c` для запуска скрипта в фоновом режиме
+        run: bash -c 'nohup python time.py &'
+        # Устанавливаем `continue-on-error: true` чтобы workflow не завершался, если скрипт завершится
+        continue-on-error: true
