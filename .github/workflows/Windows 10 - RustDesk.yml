@@ -19,6 +19,6 @@ jobs:
 
       - name: Time Counter (Непрерывный)
         # Используем `run: bash -c` для запуска скрипта в фоновом режиме
-        run: bash -c 'nohup python time.py &'
+        run: python time.py
         # Устанавливаем `continue-on-error: true` чтобы workflow не завершался, если скрипт завершится
         continue-on-error: true
