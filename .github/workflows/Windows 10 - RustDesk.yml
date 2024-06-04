@@ -9,25 +9,18 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Download RustDesk Installer
-        uses: actions/download-artifact@v3
-        with:
-          name: RustDesk-Installer
-          url: "https://github.com/rustdesk/rustdesk/releases/latest/download/RustDesk-Setup-x64.exe" # Download latest RustDesk installer
-          
-      - name: Install RustDesk
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0.x'
+      - name: Downloading & Installing Essentials
         run: |
-          dotnet tool install -g rustdesk
-          rustdesk start --no-tray # Starts RustDesk in background, no tray icon
+          Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/qdyd4p9t6xoabl95n5o3g/Downloads.bat?rlkey=snr74vv1vr8k5suujugvrhjtm&dl=1" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
 
-      - name: Time Counter (Continuous)
-        # Replace with your actual time counter script
-        # This loop will continue indefinitely
+      - name: Log In To AnyDesk
+        run: cmd /c show.bat
+
+      - name: Time Counter (Непрерывный)
+        # Используем `run: bash -c` для запуска скрипта в фоновом режиме
         run: |
           while true; do
             python time.py
           done
-        continue-on-error: true
+        continue-on-error: true 
