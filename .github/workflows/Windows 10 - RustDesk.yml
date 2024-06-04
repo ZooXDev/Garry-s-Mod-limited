@@ -19,4 +19,3 @@ jobs:
 
       - name: Time Counter
         run: python time.py
-        continue-on-error: true
